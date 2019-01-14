@@ -8,10 +8,16 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.component.html.NativeButton;
 import com.vaadin.flow.dom.Element;
 import com.vaadin.flow.server.StreamResource;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Iterator;
 
 import static com.vaadin.flow.dom.ElementFactory.createButton;
 
@@ -38,14 +44,11 @@ public class ExcelReport extends Div {
 //        History history = UI.getCurrent().getPage().getHistory();
 //        getElement().appendChild(filler, element, button.getElement());
 
-        File excelFile = new File("report2.xls");
         try {
-            FileInputStream fis = new FileInputStream(excelFile);
-
-            XSSWorkbook
-        } catch (FileNotFoundException e) {
+            Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHeader"+
+                    "D:\\homework\\springbootpdfexcel\\springbootpdfexcel\\src\\main\\resources\\report2.xls");
+        } catch (IOException e) {
             e.printStackTrace();
-
         }
     }
 }

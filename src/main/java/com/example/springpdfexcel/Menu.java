@@ -7,6 +7,8 @@ import com.vaadin.flow.component.html.NativeButton;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
 
+import java.io.IOException;
+
 @Route("")
 public class Menu extends Div {
     public Menu() {
@@ -21,14 +23,24 @@ public class Menu extends Div {
         Anchor reportLink = new Anchor(routeReport, "Спецификация | ");
         reportLink.setTarget("_blank");
         add(reportLink);
+//
+//        Anchor excelLink = new Anchor(routeExcel, "Спецификация Excel");
+//        excelLink.setTarget("_blank");
+//        add(excelLink);
 
-        Anchor excelLink = new Anchor(routeExcel, "Спецификация Excel");
-        excelLink.setTarget("_blank");
-        add(excelLink);
+//        NativeButton button = new NativeButton("Navigate to spec");
+//        button.addClickListener(e->{
+//            button.getUI().ifPresent(ui -> ui.navigate("report"));
+//        });
 
         NativeButton button = new NativeButton("Navigate to spec");
-        button.addClickListener(e->{
-            button.getUI().ifPresent(ui -> ui.navigate("report"));
+        button.addClickListener(event->{
+            try {
+                Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "+
+                        "report2.xls");
+            } catch (IOException e) {
+                e.printStackTrace();
+            };
         });
         add(button);
 
